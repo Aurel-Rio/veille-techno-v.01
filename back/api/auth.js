@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const db = require('../db');
 
 router.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, isAdmin } = req.body; // Ajout de isAdmin dans la déstructuration
 
   try {
     // Vérifier si l'utilisateur existe déjà avec l'email fourni
@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Enregistrement de l'utilisateur dans la base de données
-    await db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hashedPassword]);
+    await db.query('INSERT INTO users (username, email, password, isAdmin) VALUES (?, ?, ?, ?)', [username, email, hashedPassword, isAdmin]); // Utilisation de isAdmin dans la requête
 
     // Réponse indiquant le succès de l'inscription
     console.log('Inscription réussie !');

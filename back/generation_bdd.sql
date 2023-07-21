@@ -1,5 +1,5 @@
 -- Création de la base de données 'veiltech' si elle n'existe pas
-CREATE DATABASE IF NOT EXISTS veiltech CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS veiltech CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Utilisation de la base de données 'veiltech'
 USE veiltech;
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
   email VARCHAR(255) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   isAdmin BOOLEAN DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Table 'articles' pour les articles
 CREATE TABLE IF NOT EXISTS articles (
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS articles (
   imageUrl VARCHAR(255),
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Table 'comments' pour les commentaires
 CREATE TABLE IF NOT EXISTS comments (
@@ -33,4 +33,4 @@ CREATE TABLE IF NOT EXISTS comments (
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (articleId) REFERENCES articles(id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;
